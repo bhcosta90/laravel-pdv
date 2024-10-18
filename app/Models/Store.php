@@ -22,4 +22,9 @@ class Store extends Model
     {
         return $this->hasMany(Register::class);
     }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }

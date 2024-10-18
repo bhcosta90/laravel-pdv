@@ -21,12 +21,16 @@ class StoreSeeder extends Seeder
                     ['email' => 'employee@gmail.com', 'role' => UserRole::Employee],
                     ['email' => 'salesperson@gmail.com', 'role' => UserRole::Salesperson],
                 ))
+                ->hasProducts(30, new Sequence(...collect(range(1, 30))
+                    ->map(fn ($i) => ['ean' => $i])
+                    ->toArray()))
                 ->hasRegisters(3)
                 ->create();
 
             Store::factory(2)
                 ->hasUsers(3)
                 ->hasRegisters(3)
+                ->hasProducts(30)
                 ->create();
         });
     }

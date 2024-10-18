@@ -8,7 +8,7 @@ use App\Actions\Register\BrowserRegister;
 use App\Models\Register;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Livewire\Attributes\Layout;
+use Livewire\Attributes\{Computed, Layout};
 use Livewire\Component;
 
 #[Layout('components.layouts.blank')]
@@ -17,6 +17,8 @@ class PdvIndex extends Component
     use AuthorizesRequests;
 
     public ?Register $register;
+
+    public ?int $statusRegister = null;
 
     public function mount(BrowserRegister $register): void
     {
@@ -27,5 +29,23 @@ class PdvIndex extends Component
     public function render(): View
     {
         return view('livewire.store.pdv.pdv-index');
+    }
+
+    #[Computed(persist: true)]
+    public function validateExistRegister(): bool
+    {
+        if (blank($this->register)) {
+            $this->statusRegister = 0;
+
+            return true;
+        }
+
+        if (!$this->register->opened_by) {
+            $this->statusRegister = 1;
+
+            return true;
+        }
+
+        return false;
     }
 }
