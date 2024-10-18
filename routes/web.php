@@ -9,4 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('counter', Livewire\Counter::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('pdv', Livewire\Store\Pdv\PdvIndex::class);
+});
+
+include __DIR__ . '/auth.php';

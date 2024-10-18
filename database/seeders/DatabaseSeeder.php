@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
             'name'  => 'Administrador',
             'email' => 'admin@gmail.com',
         ]);
+
+        $this->call([
+            StoreSeeder::class,
+        ]);
     }
 }
