@@ -13,8 +13,10 @@ declare(strict_types = 1);
 |
 */
 
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+
 pest()->extend(Tests\TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+  ->use(LazilyRefreshDatabase::class)
     ->in('Feature');
 
 /*
