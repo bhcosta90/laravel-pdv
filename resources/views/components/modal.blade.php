@@ -6,7 +6,7 @@
 @php
     $model = $attributes->wire('model');
     $id = $id ?? md5($model);
-    $name ??= $model->value ?: 'open';
+
     if  (blank($header)){
         $header = $label;
     }
@@ -22,7 +22,7 @@
 
 <div>
     <div
-        x-data="{ show: @entangle($name) }"
+        x-data="{ show: @entangle($model) }"
         x-on:close.stop="show = false"
         x-on:keydown.escape.window="show = false"
     >

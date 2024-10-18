@@ -11,5 +11,6 @@
         {{ $slot }}
 
         @stack('modals')
+        <x-alerts />
     </body>
 </html>

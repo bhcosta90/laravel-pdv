@@ -5,8 +5,8 @@
         @lang('Selecionar o caixa')
     </x-button>
 
-    <x-modal label="Informe o caixa" warning>
-        <form class="flex justify-between join">
+    <x-modal wire:model="open" label="Informe o caixa" warning>
+        <form class="flex justify-between join" wire:submit="submit">
             <x-select class="join-item" :collection="$this->registers" wire:model="register" />
             <x-button class="join-item" primary>
                 @lang('Informar')

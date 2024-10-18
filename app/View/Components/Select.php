@@ -4,17 +4,17 @@ declare(strict_types = 1);
 
 namespace App\View\Components;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\View\Component;
 
 class Select extends Component
 {
-    public ?Collection $collection = null;
+    public array $datas = [];
 
-    public function __construct(?Collection $collection = null)
+    public function __construct(?HasMany $collection = null)
     {
         if ($collection) {
-            $this->collection = $collection;
+            $this->datas = $collection->get()->pluck('name', 'id')->toArray();
         }
     }
 
@@ -24,9 +24,9 @@ class Select extends Component
             <select {{ $attributes->merge([
                 'class' => 'w-full'
             ]) }}>
-                <option>@lang('Selecione...')</option>
-                @if ($collection)
-                    @foreach ($collection->pluck('name', 'id') as $key => $value)
+                <option value="">@lang('Selecione...')</option>
+                @if ($datas)
+                    @foreach ($datas as $key => $value)
                         <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach
                 @endif
