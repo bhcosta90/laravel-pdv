@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Schema;
 return new class () extends Migration {
     public function up(): void
     {
-        Schema::create('register_products', function (Blueprint $table) {
+        Schema::create('order_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('register_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
-            $table->string('description');
+            $table->foreignId('order_id');
+            $table->foreignId('product_id');
+            $table->string('name');
             $table->unsignedBigInteger('sell_price');
             $table->unsignedBigInteger('quantity');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class () extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('register_products');
+        Schema::dropIfExists('order_products');
     }
 };
