@@ -18,7 +18,7 @@ class PdvIndex extends Component
 
     public ?Register $register;
 
-    public ?int $statusRegister = null;
+    public ?int $statusRegister = 0;
 
     public function mount(BrowserRegister $register): void
     {
@@ -32,20 +32,28 @@ class PdvIndex extends Component
     }
 
     #[Computed(persist: true)]
-    public function validateExistRegister(): bool
+    public function validateExistRegister(): ?int
     {
         if (blank($this->register)) {
-            $this->statusRegister = 0;
-
-            return true;
+            return 1;
         }
 
         if (!$this->register->opened_by) {
-            $this->statusRegister = 1;
-
-            return true;
+            return 2;
         }
 
-        return false;
+        return null;
+    }
+
+    #[Computed]
+    public function totalItens(): int
+    {
+        return 0;
+    }
+
+    #[Computed]
+    public function disableButton(): int
+    {
+        return 0;
     }
 }
