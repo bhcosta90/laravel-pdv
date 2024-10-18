@@ -18,6 +18,7 @@ return new class () extends Migration {
             $table->unsignedBigInteger('sell_price');
             $table->unsignedBigInteger('cash_buy');
             $table->unsignedBigInteger('quantity');
+            $table->boolean('is_disabled')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

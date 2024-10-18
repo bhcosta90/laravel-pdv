@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Models\Casts;
+namespace App\Models\Cast;
 
 use App\Facades\BcMath;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;

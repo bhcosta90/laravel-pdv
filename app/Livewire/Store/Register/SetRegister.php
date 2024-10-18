@@ -14,6 +14,8 @@ class SetRegister extends Component
 {
     use WithAlert;
 
+    public ?int $register = null;
+
     public bool $open = false;
 
     public function render(): View
@@ -29,9 +31,15 @@ class SetRegister extends Component
             ->orderBy('name');
     }
 
-    public function submit(): void
+    public function submit(\App\Actions\Register\SetRegister $setRegister): void
     {
+        $setRegister->handle([
+            'register' => $this->register,
+            'user'     => user()->id,
+            'store'    => store()->id,
+        ]);
         $this->notificationSuccess('Caixa vinculado com sucesso na sua máquina');
+        $this->dispatch('register::set', $this->register);
         $this->reset();
     }
 }

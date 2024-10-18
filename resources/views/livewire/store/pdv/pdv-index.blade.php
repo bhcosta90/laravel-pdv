@@ -3,7 +3,9 @@
         <div class="h-full flex flex-col bg-secondary">
             <div class="bg-neutral-content py-3 px-1.5 text-2xl flex justify-between items-center">
                 <div>@lang('Lista de produtos')</div>
-                <livewire:store.register.set-register />
+                @if($this->validateExistRegister === 1)
+                    <livewire:store.register.set-register />
+                @endif
             </div>
             <div class="flex-grow overflow-y-auto p-4" id="table-container">
                 oi

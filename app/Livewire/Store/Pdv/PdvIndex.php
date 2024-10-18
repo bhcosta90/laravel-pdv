@@ -8,7 +8,7 @@ use App\Actions\Register\BrowserRegister;
 use App\Models\Register;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Livewire\Attributes\{Computed, Layout};
+use Livewire\Attributes\{Computed, Layout, On};
 use Livewire\Component;
 
 #[Layout('components.layouts.blank')]
@@ -31,9 +31,14 @@ class PdvIndex extends Component
         return view('livewire.store.pdv.pdv-index');
     }
 
-    #[Computed(persist: true)]
-    public function validateExistRegister(): ?int
+    #[On('register::set')]
+    #[Computed]
+    public function validateExistRegister(?Register $register = null): ?int
     {
+        if ($register) {
+            $this->register = $register;
+        }
+
         if (blank($this->register)) {
             return 1;
         }

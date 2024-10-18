@@ -6,10 +6,22 @@ use App\Models\{Store, User};
 
 function store(): Store
 {
-    return auth()->user()->store;
+    static $store = null;
+
+    if ($store === null) {
+        $store = auth()->user()->store;
+    }
+
+    return $store;
 }
 
 function user(): User
 {
-    return auth()->user();
+    static $user = null;
+
+    if ($user === null) {
+        $user = auth()->user();
+    }
+
+    return $user;
 }

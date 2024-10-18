@@ -18,6 +18,8 @@ return new class () extends Migration {
             $table->dateTime('opened_at')->nullable();
             $table->dateTime('closed_at')->nullable();
             $table->string('name');
+            $table->boolean('is_disabled')->nullable();
+            $table->boolean('is_unlink')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

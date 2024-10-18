@@ -13,6 +13,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('name')->unique();
             $table->timestamps();
+            $table->boolean('is_disabled')->nullable();
             $table->softDeletes();
         });
     }

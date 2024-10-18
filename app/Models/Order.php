@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
-use App\Models\Casts\ValueCast;
+use App\Models\Cast\ValueCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
